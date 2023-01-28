@@ -32,26 +32,27 @@ const Todo = () => {
   return (<Flex
     w={'full'}
     // h={'100vh'}
-    backgroundImage={
-    'url(https://png.vector.me/files/images/1/1/111945/sticky_note_pad_clip_art.jpg)'
-    }
-    backgroundSize={'cover'}
-    backgroundPosition={'center center'}>
+    // backgroundImage={
+    //'url(https://png.vector.me/files/images/1/1/111945/sticky_note_pad_clip_art.jpg)'
+   // }
+    // backgroundSize={'cover'}
+    // backgroundPosition={'center center'}
+    >
     <VStack
       w={'full'}
       justify={'center'}
       // px={useBreakpointValue({ base: 4, md: 8 })}
       // bg={useColorModeValue('white', 'gray.800')}
       bgGradient={'linear(to-r, blackAlpha.600, transparent)'}>
-      <Stack maxW={'2xl'} align={'flex-start'} spacing={5}><Heading m={2} p={1} position={'center'} size='lg' fontSize='50px'>
+      <Stack maxW={'2xl'}  spacing={3}><Heading pt={7} size='lg' fontSize='50px' color='teal'>
  TODO APP
 </Heading>
         <HStack>
           <TodoInput />
         </HStack>
         <Box>
-          {isLoading ? <Loader/>:
-           todos.map((el) => {
+          {isLoading && <Loader/>}
+          {todos.length>0 && todos.map((el) => {
             return <Box key={el.id} 
             // onClick={handleClick}
             >
