@@ -3,47 +3,31 @@ import React, { useState, useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { deleteTodo, getTodos, toggleTodo } from '../Redux/action'
 import { store } from '../Redux/store'
+import Loader from './Loader'
 import TodoInput from './TodoInput'
 
 const Todo = () => {
 
   const dispatch = useDispatch()
 
-  // const {todos, isLoading}= useSelector((store)=> store.todos, store.isLoading)
-
-  // const {todos, isLoading}= useSelector((store)=> {
-  //     return {todos: store.todos,
-  //         isLoading: store.isLoading
-  //      }} )
-  const todos = useSelector((store) => store.todos)
+  const {todos, isLoading}= useSelector((store)=> {
+      return {todos: store.todos,
+          isLoading: store.isLoading
+       }} )
+  // const todos = useSelector((store) => store.todos)
   console.log("todos:", todos);
   //  dispatch(getTodos)
   useEffect(() => {
     dispatch(getTodos())
   }, [])
-  // useEffect(()=>{ 
+
   const handleToggle = (id, status) => {
     dispatch(toggleTodo(id, status)).then(() => dispatch(getTodos()))
   }
-  // },[])
+
   const handleDelete = (id) => {
     dispatch(deleteTodo(id)).then(() => dispatch(getTodos()))
   }
-  const [change, setChange] = useState("")
-  const handleClick = () => {
-    console.log("clicked");
-    console.log(change);
-  }
-
-  {/* <h3>Todo  App</h3>
-        <TodoInput setChange={setChange}/>
-      {todos.length>0 && todos.map((el)=>{
-       return <div key={el.id}  onClick={handleClick}>
-         {el.title} {el.status? "Completed" : "Pending"}
-       <button onClick={()=>handleToggle(el.id, el.status)}>Toggle</button>
-       <button onClick={()=>handleDelete(el.id)}>Delete</button> 
- </div>
-      })}   */}
 
   return (<Flex
     w={'full'}
@@ -63,10 +47,11 @@ const Todo = () => {
  TODO APP
 </Heading>
         <HStack>
-          <TodoInput setChange={setChange} />
+          <TodoInput />
         </HStack>
         <Box>
-          {todos.length > 0 && todos.map((el) => {
+          {isLoading ? <Loader/>:
+           todos.map((el) => {
             return <Box key={el.id} 
             // onClick={handleClick}
             >
@@ -180,3 +165,13 @@ const Todo = () => {
 }
 
 export default Todo
+
+  {/* <h3>Todo  App</h3>
+        <TodoInput setChange={setChange}/>
+      {todos.length>0 && todos.map((el)=>{
+       return <div key={el.id}  onClick={handleClick}>
+         {el.title} {el.status? "Completed" : "Pending"}
+       <button onClick={()=>handleToggle(el.id, el.status)}>Toggle</button>
+       <button onClick={()=>handleDelete(el.id)}>Delete</button> 
+ </div>
+      })}   */}

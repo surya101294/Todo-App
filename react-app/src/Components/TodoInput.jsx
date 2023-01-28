@@ -4,18 +4,14 @@ import { useRef } from 'react'
 import { useDispatch } from 'react-redux'
 import { getTodos, postTodos } from '../Redux/action'
 
-const TodoInput = ({ setChange }) => {
+const TodoInput = () => {
   const [title, setTitle] = useState("")
   const dispatch = useDispatch()
   const handleClick = () => {
     dispatch(postTodos(title)).then(() => dispatch(getTodos()))
     setTitle("")
   }
-  const inputRef = useRef(null)
-  setChange(title)
-  
-  {/* <input ref={inputRef.current} type='text' value={title} onChange={(e) => setTitle(e.target.value)} /> */}
-      {/* <button onClick={() => handleClick()} >ADD TODO</button> */}
+
   return (
   <VStack
         boxShadow={'lg'}
@@ -33,7 +29,7 @@ const TodoInput = ({ setChange }) => {
         _hover={{ bg: 'transparent', transform: 'scale(1.05)' }}
         
         >
-<Input ref={inputRef.current} type='text' value={title} onChange={(e) => setTitle(e.target.value)} />
+<Input type='text' value={title} onChange={(e) => setTitle(e.target.value)} />
         
         <Button
           bg={'blue.400'}
@@ -51,3 +47,6 @@ const TodoInput = ({ setChange }) => {
   )
 }
 export default TodoInput
+
+  {/* <input ref={inputRef.current} type='text' value={title} onChange={(e) => setTitle(e.target.value)} /> */}
+      {/* <button onClick={() => handleClick()} >ADD TODO</button> */}

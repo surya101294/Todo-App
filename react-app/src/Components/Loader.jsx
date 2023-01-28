@@ -1,11 +1,17 @@
+import {Spinner } from '@chakra-ui/react'
 import React from 'react'
 
 const Loader = () => {
     return (
-        <Box padding='6' boxShadow='lg' bg='white'>
-            <SkeletonCircle size='10' />
-            <SkeletonText mt='4' noOfLines={4} spacing='4' skeletonHeight='2' />
-        </Box>
+        <Spinner
+        thickness='4px'
+        speed='0.65s'
+        emptyColor='gray.200'
+        color='blue.500'
+        size='xl'
+        position='absolute'
+        // width="400px"
+      />
     )
 }
 
