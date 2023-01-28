@@ -63,9 +63,9 @@ export const todoDeleteFailureAction=()=>{
   return {type:DELETE_TODO_FAILURE}
 }
 
-export const getTodos=(dispatch)=>{
+export const getTodos=()=>(dispatch)=>{
     dispatch (todoGetRequestAction())
-   return axios.get(`http://localhost:8080/todos`)
+    axios.get(`http://localhost:8080/todos`)
     .then((res)=>{
         console.log(res.data);
        dispatch(todoGetSuccessAction(res.data))
@@ -93,7 +93,7 @@ export const toggleTodo=(id,newStatus)=>(dispatch)=>{
 
 export const deleteTodo=(id)=>(dispatch)=>{
   dispatch(todoDeleteRequestAction())
-  axios.delete(`http://localhost:8080/todos/${id}`)
+ return axios.delete(`http://localhost:8080/todos/${id}`)
   .then((res)=> dispatch(todoDeleteSuccessAction(res.data)))
   .catch(()=> dispatch(todoDeleteFailureAction()))
 }
