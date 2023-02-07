@@ -1,5 +1,7 @@
 # Todo-App
 Build a Todo Application using react-redux
+# Tech Stack : 
+React  | React-redux | chakara UI |  HTML | CSS
 
 Deployed Link
 https://react-app-umber-six.vercel.app/
